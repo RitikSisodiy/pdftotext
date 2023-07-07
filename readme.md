@@ -41,7 +41,30 @@ To use the PDF to Text project, follow these steps:
     
 3.  Use the API to upload a PDF file and receive the extracted text in response.
     
+### API Documentation
 
+The following API endpoints are available:
+
+#### Upload Image
+
+-   **URL:** `http://127.0.0.1:5000/upload_file`
+-   **Method:** `POST`
+-   **Description:** Uploads a PDF file for text extraction.
+-   **Request Body:**
+    -   Type: `form-data`
+    -   Parameters:
+        -   `file`: PDF file to upload
+
+#### Get Pages
+
+-   **URL:** `http://127.0.0.1:5000/extract_text`
+-   **Method:** `GET`
+-   **Description:** Retrieves the text for a specific page of a PDF file.
+-   **Query Parameters:**
+    -   `pdf_id`: ID of the PDF file
+    -   `page`: Page number to extract text from
+  
+  
 ## Docker Deployment
 
 To deploy the project using Docker, follow these steps:
