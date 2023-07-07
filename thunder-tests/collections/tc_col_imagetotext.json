@@ -1,0 +1,59 @@
+{
+    "_id": "b013a72b-9466-490d-a082-8212c6fe6007",
+    "colName": "imagetotext",
+    "created": "2023-07-07T19:52:04.703Z",
+    "sortNum": 10000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "49ff6f39-33c8-48ef-a806-62983eaad85f",
+            "colId": "b013a72b-9466-490d-a082-8212c6fe6007",
+            "containerId": "",
+            "name": "upload image",
+            "url": "http://127.0.0.1:5000/upload_file",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-07T19:52:11.425Z",
+            "modified": "2023-07-07T22:15:13.462Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "file",
+                        "value": "..\\..\\..\\Downloads\\proof.pdf"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "a03f2d42-8b7d-4cd0-ae8e-bc6a58fe5950",
+            "colId": "b013a72b-9466-490d-a082-8212c6fe6007",
+            "containerId": "",
+            "name": "getpages",
+            "url": "http://127.0.0.1:5000/extract_text?pdf_id=4571437219&page=2",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-07-07T19:55:01.452Z",
+            "modified": "2023-07-07T22:19:45.477Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "pdf_id",
+                    "value": "4571437219",
+                    "isPath": false
+                },
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ]
+}
