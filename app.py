@@ -6,6 +6,8 @@ from pdftotext.pdftotext import pdf_page_to_text
 # from pdftotext.pdf_to_text import pdf_to_text as pdf_page_to_text
 import os
 import random
+from cleanup import cleanup_thread
+cleanup_thread.start()
 try:
     os.mkdir("tmp")
 except:pass
@@ -41,7 +43,7 @@ def extract_text():
     # Check if the PDF ID is valid
     filename = f"tmp/{pdf_id}.pdf"
     if not os.path.isfile(filename):
-        return jsonify({'error': 'Invalid PDF ID'}), 400
+        return jsonify({'error': 'file not exist please re-upload and try again'}), 400
 
    
     opage_number = request.args.get('page', type=int)
