@@ -5,11 +5,11 @@ def cleanup_tmp_folder():
         current_time = datetime.datetime.now()
 
         # Get the list of files in the tmp folder
-        files = os.listdir('/tmp')
+        files = os.listdir('tmp')
 
         # Iterate over the files and delete the ones older than 1 hour
         for file in files:
-            file_path = os.path.join('/tmp', file)
+            file_path = os.path.join('tmp', file)
             if os.path.isfile(file_path):
                 file_modified_time = datetime.datetime.fromtimestamp(os.path.getmtime(file_path))
                 time_difference = current_time - file_modified_time

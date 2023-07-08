@@ -46,12 +46,14 @@ def extract_text():
         return jsonify({'error': 'file not exist please re-upload and try again'}), 400
 
    
-    opage_number = request.args.get('page', type=int)
-    page_number =opage_number -1
+    page_number = request.args.get('page', type=int)
+    page_index =page_number -1
+    pdf_reader = PyPDF2.PdfReader(filename)
+    total_pages = len(pdf_reader.pages)
     try:
-        extract_text = pdf_page_to_text(filename,page_number)
-        return jsonify({'page': page_number, 'text': extract_text}), 200
+        extract_text = pdf_page_to_text(pdf_reader,page_index,filename)
+        return jsonify({'page': f"{page_number} of {total_pages}", 'text': extract_text}), 200
     except IndexError:
-        return jsonify({'page': opage_number, 'message': "out of index page not found"}), 200
+        return jsonify({'page': f"{page_number} of {total_pages}", 'message': "out of index page not found"}), 200
 if __name__ == '__main__':
     app.run()

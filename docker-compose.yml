@@ -25,6 +25,7 @@ services:
       - static_volume:/app/staticfiles
     networks:
       - web_network
+    
 
 networks:
   web_network:

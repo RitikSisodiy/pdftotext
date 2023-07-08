@@ -10,11 +10,11 @@
             "colId": "b013a72b-9466-490d-a082-8212c6fe6007",
             "containerId": "",
             "name": "upload image",
-            "url": "http://127.0.0.1/upload_file",
+            "url": "{{url}}/upload_file",
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-07-07T19:52:11.425Z",
-            "modified": "2023-07-08T06:56:15.967Z",
+            "modified": "2023-07-08T10:49:11.870Z",
             "headers": [],
             "params": [],
             "body": {
@@ -24,7 +24,7 @@
                 "files": [
                     {
                         "name": "file",
-                        "value": "..\\..\\..\\Downloads\\proof.pdf"
+                        "value": "..\\..\\..\\Downloads\\Statuts Meister Berliner Holding_91726859-0ec2-4b46-9c89-1bbabad0a4fb (1).pdf"
                     }
                 ]
             },
@@ -35,21 +35,21 @@
             "colId": "b013a72b-9466-490d-a082-8212c6fe6007",
             "containerId": "",
             "name": "getpages",
-            "url": "http://127.0.0.1/extract_text?pdf_id=4003159919&page=1",
+            "url": "{{url}}/extract_text?pdf_id=2573588058&page=3",
             "method": "GET",
             "sortNum": 20000,
             "created": "2023-07-07T19:55:01.452Z",
-            "modified": "2023-07-08T06:56:29.991Z",
+            "modified": "2023-07-08T10:49:29.404Z",
             "headers": [],
             "params": [
                 {
                     "name": "pdf_id",
-                    "value": "4003159919",
+                    "value": "2573588058",
                     "isPath": false
                 },
                 {
                     "name": "page",
-                    "value": "1",
+                    "value": "3",
                     "isPath": false
                 }
             ],

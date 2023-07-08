@@ -1,40 +1,42 @@
-import PyPDF2,io,pdb
-import pytesseract,random
+import PyPDF2
+import pytesseract
 from PIL import Image
-io.BytesIO
+from pdf2image import convert_from_path
+import pdfminer.high_level 
+import pdfminer
+import pytesseract ,io
+from pdf2image import convert_from_path
+from PIL import Image
+from pdfminer.layout import LTTextContainer,LTTextBoxHorizontal
 # Open the PDF file
-
-def pdf_page_to_text(file,page_num):
-    pdf_reader = PyPDF2.PdfReader(file)
+def get_image(layout_object):
+    if (isinstance(layout_object, LTTextContainer) or isinstance(layout_object, LTTextBoxHorizontal)):
+        # pdb.set_trace()
+        return layout_object.get_text()
+    if isinstance(layout_object, pdfminer.layout.LTContainer):
+        result = ""
+        for child in layout_object:
+            result += get_image(child)
+        return result
+    else:
+        return ""
+def pdf_page_to_text(pdf_reader,page_num,filepath):
     page = pdf_reader.pages[page_num]
     if '/XObject' in page['/Resources']:
-        # If the page contains images
-        xObject = page['/Resources']['/XObject'].get_object()
-
-        for obj in xObject:
-            # print(xObject[obj]['/Subtype'])
-            if xObject[obj]['/Subtype'] == '/Image':
-                # Use Tesseract OCR to extract text from the image
-                # print(xObject[obj])
-                # pdb.set_trace()
-                try:
-                    # print("extraciting....",end="\r")
-                    extracted_image_text = pytesseract.image_to_string(Image.open(io.BytesIO(xObject[obj]._data)))
-                    # print("extracted....",end="\r")
-                    # Append the extracted image text to the result string
-                    return extracted_image_text
-                except:
-                    open(f"{random.randint(1000,100000)}.jpg","wb").write(xObject[obj]._data)
-                    # pdb.set_trace()
-                    # return xObject[obj].extract_text()
-                    return ""
-                    # print("pass")
-    else:
-        print("inside else")
-        # If the page contains text elements
+        page = convert_from_path(filepath,first_page= page_num+1,last_page=page_num+1)[0]
+        extracted_image_text = pytesseract.image_to_string(page)
+        # return xObject[obj].extract_text()
+        extracted_text =  extracted_image_text
+        # print("pass")
+    else:        
         extracted_text = page.extract_text()
+        if not extracted_text:
+            pages = list(pdfminer.high_level.extract_pages(filepath))
+            page = pages[page_num]
+            extracted_text = get_image(page)
 
     # Append the extracted text to the result string
+    open(f"{filepath}{page_num}.txt","w").write(extracted_text)
     return extracted_text
 def pdf_to_text(pdf_file):
     if isinstance(pdf_file,str):
