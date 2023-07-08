@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>API Documentation</h1>
+
+    <div class="endpoint">
+        <h2>Upload Image</h2>
+        <div class="method">Method: POST</div>
+        <div class="url">URL: http://127.0.0.1:5000/upload_file</div>
+        <div class="description">Uploads a PDF file for text extraction.</div>
+        <table class="parameter-table">
+            <tr>
+                <th>Request Body</th>
+                <td>Type: form-data</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <table>
+                        <tr>
+                            <td>file</td>
+                            <td>PDF file to upload</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h2>Get Pages</h2>
+        <div class="method">Method: GET</div>
+        <div class="url">URL: http://127.0.0.1:5000/extract_text</div>
+        <div class="description">Retrieves the text for a specific page of a PDF file.</div>
+        <table class="parameter-table">
+            <tr>
+                <th>Query Parameters</th>
+                <td>
+                    <table>
+                        <tr>
+                            <td>pdf_id</td>
+                            <td>ID of the PDF file</td>
+                        </tr>
+                        <tr>
+                            <td>page</td>
+                            <td>Page number to extract text from</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+   
+</body>
+</html>

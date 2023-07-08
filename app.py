@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,render_template
 # from pdftotext.pdftotext import pdf_page_to_text
 from pdftotext.pdf_imge_area import PDFConverter
 import os
@@ -30,7 +30,9 @@ def upload_file():
     file.save(f"tmp/{pdfid}.pdf")
 
     return jsonify({'pdf_id': pdfid}), 200
-
+@app.route('/')
+def api_documentation():
+    return render_template('index.html')
 @app.route('/extract_text', methods=['GET'])
 def extract_text():
     # Get the PDF ID from the request's query parameter
