@@ -3,11 +3,10 @@ from flask import Flask, request, jsonify
 from pdftotext.pdf_imge_area import PDFConverter
 import os
 import random
+try:os.mkdir("tmp")
+except:pass
 from cleanup import cleanup_thread
 cleanup_thread.start()
-try:
-    os.mkdir("tmp")
-except:pass
 app = Flask(__name__)
 
 pdf_files = {}  # Dictionary to store uploaded PDF files
