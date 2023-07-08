@@ -21,6 +21,8 @@ services:
     volumes:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
       - static_volume:/app/staticfiles
+    expose:
+      - /app/staticfiles/app.sock  # Adjust the port number as needed
     networks:
       - web_network
 
