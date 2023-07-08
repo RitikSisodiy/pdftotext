@@ -35,21 +35,21 @@
             "colId": "b013a72b-9466-490d-a082-8212c6fe6007",
             "containerId": "",
             "name": "getpages",
-            "url": "{{url}}/extract_text?pdf_id=2573588058&page=3",
+            "url": "{{url}}/extract_text?pdf_id=4818145635&page=2",
             "method": "GET",
             "sortNum": 20000,
             "created": "2023-07-07T19:55:01.452Z",
-            "modified": "2023-07-08T10:49:29.404Z",
+            "modified": "2023-07-08T12:11:47.407Z",
             "headers": [],
             "params": [
                 {
                     "name": "pdf_id",
-                    "value": "2573588058",
+                    "value": "4818145635",
                     "isPath": false
                 },
                 {
                     "name": "page",
-                    "value": "3",
+                    "value": "2",
                     "isPath": false
                 }
             ],

@@ -1,9 +1,6 @@
 from flask import Flask, request, jsonify
-import PyPDF2,pdb
-import pytesseract
-from PIL import Image
-from pdftotext.pdftotext import pdf_page_to_text
-# from pdftotext.pdf_to_text import pdf_to_text as pdf_page_to_text
+# from pdftotext.pdftotext import pdf_page_to_text
+from pdftotext.pdf_imge_area import PDFConverter
 import os
 import random
 from cleanup import cleanup_thread
@@ -48,12 +45,11 @@ def extract_text():
    
     page_number = request.args.get('page', type=int)
     page_index =page_number -1
-    pdf_reader = PyPDF2.PdfReader(filename)
-    total_pages = len(pdf_reader.pages)
+    convert_pdf = PDFConverter(filename)
     try:
-        extract_text = pdf_page_to_text(pdf_reader,page_index,filename)
-        return jsonify({'page': f"{page_number} of {total_pages}", 'text': extract_text}), 200
+        
+        return jsonify({'page': f"{page_number}", 'text': convert_pdf.extract_text_from_page(page_index)}), 200
     except IndexError:
-        return jsonify({'page': f"{page_number} of {total_pages}", 'message': "out of index page not found"}), 200
+        return jsonify({'page': f"{page_number}", 'message': "out of index page not found"}), 200
 if __name__ == '__main__':
     app.run()
