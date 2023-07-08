@@ -9,8 +9,6 @@ services:
       - static_volume:/app/staticfiles
     networks:
       - web_network
-    ports:
-      - "8000:8000"  # Adjust the port number as needed
     stdin_open: true
     tty: true
 
@@ -23,8 +21,6 @@ services:
     volumes:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
       - static_volume:/app/staticfiles
-    ports:
-      - "80:80"  # Adjust the port number as needed
     networks:
       - web_network
 
