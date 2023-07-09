@@ -27,9 +27,10 @@ def upload_file():
     # pdf_id = str(hash(file.read()))
     # Save the file to the dictionary with the PDF ID as the key
     pdfid = random.randint(10000,10000000000)
-    file.save(f"tmp/{pdfid}.pdf")
-
-    return jsonify({'pdf_id': pdfid}), 200
+    filename = f"tmp/{pdfid}.pdf"
+    file.save(filename)
+    pdf = PDFConverter(filename)
+    return jsonify({'pdf_id': pdfid,"total_pages":len(pdf.doc)}), 200
 @app.route('/')
 def api_documentation():
     return render_template('index.html')
